@@ -5,16 +5,21 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 
+// Keys stored securely on the server — users never see them
+const CLAUDE_KEY = process.env.CLAUDE_KEY;
+const OPENAI_KEY = process.env.OPENAI_KEY;
+
 // ── Claude API proxy ──
 app.post('/api/generate', async (req, res) => {
-  const { prompt, claudeKey } = req.body;
-  if (!prompt || !claudeKey) return res.status(400).json({ error: 'Missing prompt or API key' });
+  const { prompt } = req.body;
+  if (!prompt) return res.status(400).json({ error: 'Missing prompt' });
+  if (!CLAUDE_KEY) return res.status(500).json({ error: 'Server not configured — please add CLAUDE_KEY environment variable in Render.' });
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': claudeKey,
+        'x-api-key': CLAUDE_KEY,
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
@@ -33,14 +38,15 @@ app.post('/api/generate', async (req, res) => {
 
 // ── OpenAI DALL-E image generation proxy ──
 app.post('/api/image', async (req, res) => {
-  const { prompt, openaiKey } = req.body;
-  if (!prompt || !openaiKey) return res.status(400).json({ error: 'Missing prompt or OpenAI key' });
+  const { prompt } = req.body;
+  if (!prompt) return res.status(400).json({ error: 'Missing prompt' });
+  if (!OPENAI_KEY) return res.status(500).json({ error: 'Server not configured — please add OPENAI_KEY environment variable in Render.' });
   try {
     const response = await fetch('https://api.openai.com/v1/images/generations', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${openaiKey}`
+        'Authorization': `Bearer ${OPENAI_KEY}`
       },
       body: JSON.stringify({
         model: 'dall-e-3',
@@ -60,8 +66,10 @@ app.post('/api/image', async (req, res) => {
 
 // ── Brand recommendations proxy ──
 app.post('/api/recommend', async (req, res) => {
-  const { brandProfile, claudeKey } = req.body;
-  if (!brandProfile || !claudeKey) return res.status(400).json({ error: 'Missing data' });
+  const { brandProfile } = req.body;
+  if (!brandProfile) return res.status(400).json({ error: 'Missing brand profile' });
+  if (!CLAUDE_KEY) return res.status(500).json({ error: 'Server not configured.' });
+
   const prompt = `You are a world-class social media strategist for Brandlift Creative.
 
 Based on this brand profile, generate 5 specific, actionable post ideas for this week.
@@ -74,11 +82,7 @@ Brand Profile:
 - Content pillars: ${brandProfile.pillars}
 - Goals: ${brandProfile.goals}
 
-Generate 5 post recommendations. Each should include:
-- A compelling post topic/angle
-- Which platform it works best for
-- The emotional hook to use
-- Why it will resonate with their specific audience
+Generate 5 post recommendations. Each should include a compelling topic, best platform, emotional hook, and why it resonates with their audience.
 
 Respond ONLY with raw JSON, no markdown:
 {"recommendations":[{"topic":"...","platform":"Facebook","hook":"Inspirational story","reason":"...","cta":"..."}]}`;
@@ -88,7 +92,7 @@ Respond ONLY with raw JSON, no markdown:
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': claudeKey,
+        'x-api-key': CLAUDE_KEY,
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
