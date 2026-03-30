@@ -22,16 +22,14 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 /* ── Nav ── */
 .topnav { background: var(--surface); display:flex; align-items:center; justify-content:space-between; padding:0 22px; height:58px; border-bottom:1px solid var(--border2); position:sticky; top:0; z-index:100; }
 .logo { display:flex; align-items:center; gap:10px; }
-.logo-icon { width:36px; height:36px; background:var(--teal); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.logo-icon { width:36px; height:36px; background:var(--teal); border-radius:10px; display:flex; align-items:center; justify-content:center; }
 .logo-text { display:flex; flex-direction:column; }
 .logo-name { font-family:var(--font-head); font-size:15px; color:var(--text); line-height:1.2; }
 .logo-name em { color:var(--teal-dark); font-style:normal; }
 .logo-sub { font-size:9px; color:var(--muted); letter-spacing:1.5px; text-transform:uppercase; font-weight:500; }
 .nav-links { display:flex; gap:2px; }
 .nav-btn { padding:6px 14px; border-radius:20px; font-size:12px; color:var(--muted); cursor:pointer; font-weight:500; background:none; border:none; font-family:var(--font-body); transition:all 0.15s; }
-.nav-btn:hover { color:var(--text); }
 .nav-btn.on { background:var(--teal-light); color:var(--teal-dark); }
-.nav-right { display:flex; align-items:center; gap:10px; }
 .usage-pill { font-size:11px; padding:4px 12px; border-radius:20px; background:var(--teal-pale); color:var(--muted); border:1px solid var(--border2); }
 .usage-pill.low { background:var(--coral-pale); color:var(--coral-dark); border-color:rgba(242,107,78,0.3); }
 .upgrade-nav-btn { font-size:11px; padding:7px 16px; border-radius:20px; background:var(--coral); color:#fff; font-weight:700; cursor:pointer; border:none; font-family:var(--font-body); transition:all 0.15s; }
@@ -41,73 +39,58 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .hero { background:var(--teal); padding:20px 22px 24px; position:relative; overflow:hidden; }
 .hero::before { content:''; position:absolute; right:-40px; top:-40px; width:200px; height:200px; background:rgba(255,255,255,0.07); border-radius:50%; }
 .hero::after { content:''; position:absolute; right:100px; bottom:-50px; width:130px; height:130px; background:rgba(255,255,255,0.05); border-radius:50%; }
-.hero-inner { display:flex; align-items:center; justify-content:space-between; position:relative; gap:20px; }
-.hero-left h1 { font-family:var(--font-head); font-size:24px; color:#fff; font-weight:800; margin-bottom:6px; line-height:1.25; }
-.hero-left p { font-size:12px; color:rgba(255,255,255,0.75); font-weight:400; }
-.hero-stats { display:flex; gap:10px; flex-shrink:0; }
+.hero-inner { display:flex; align-items:center; justify-content:space-between; position:relative; gap:20px; flex-wrap:wrap; }
+.hero-left h1 { font-family:var(--font-head); font-size:22px; color:#fff; font-weight:800; margin-bottom:5px; line-height:1.3; }
+.hero-left p { font-size:12px; color:rgba(255,255,255,0.75); }
+.hero-stats { display:flex; gap:10px; }
 .hero-stat { background:var(--coral); border-radius:12px; padding:10px 18px; text-align:center; border:1px solid var(--coral-dark); }
 .hero-stat-num { font-family:var(--font-head); font-size:22px; font-weight:700; color:#fff; line-height:1; }
 .hero-stat-label { font-size:9px; color:rgba(255,255,255,0.82); text-transform:uppercase; letter-spacing:1px; margin-top:4px; }
 
 /* ── Layout ── */
-.shell { display:grid; grid-template-columns:295px 1fr; min-height:calc(100vh - 58px - 56px); }
-@media (max-width:800px) { .shell { grid-template-columns:1fr; } .hero-stats { display:none; } }
+.shell { display:grid; grid-template-columns:295px 1fr; min-height:calc(100vh - 115px); }
+@media(max-width:800px){ .shell{grid-template-columns:1fr;} .hero-stats{display:none;} }
 
 /* ── Sidebar ── */
-.sidebar { background:var(--surface); border-right:1px solid var(--border2); padding:18px 16px; display:flex; flex-direction:column; gap:14px; overflow-y:auto; }
-.sec-hd { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--teal-dark); margin-bottom:6px; display:flex; align-items:center; gap:7px; }
+.sidebar { background:var(--surface); border-right:1px solid var(--border2); padding:18px 16px; display:flex; flex-direction:column; gap:13px; overflow-y:auto; }
+.sec-hd { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--teal-dark); margin-bottom:5px; display:flex; align-items:center; gap:7px; }
 .sec-hd::after { content:''; flex:1; height:1px; background:var(--teal-light); }
-.field { display:flex; flex-direction:column; gap:5px; }
+.field { display:flex; flex-direction:column; gap:4px; }
 .field label { font-size:11px; color:var(--muted); font-weight:500; }
-input[type="text"], select, textarea {
-  width:100%; padding:8px 11px; border:1px solid var(--border2); border-radius:var(--rs);
-  font-size:12px; color:var(--text); background:var(--teal-pale); font-family:var(--font-body);
-  outline:none; transition:border-color 0.15s;
-}
+input[type="text"], select, textarea { width:100%; padding:8px 11px; border:1px solid var(--border2); border-radius:var(--rs); font-size:12px; color:var(--text); background:var(--teal-pale); font-family:var(--font-body); outline:none; transition:border-color 0.15s; }
 input:focus, select:focus, textarea:focus { border-color:var(--teal); }
 input::placeholder, textarea::placeholder { color:var(--muted); }
 select { cursor:pointer; -webkit-appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%235a7f85' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 10px center; background-color:var(--teal-pale); padding-right:28px; }
 textarea { resize:vertical; min-height:64px; }
 .two-col { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
 .divline { height:1px; background:var(--border2); flex-shrink:0; }
-
-/* Chips */
 .chip-row { display:flex; flex-wrap:wrap; gap:5px; }
 .chip { padding:4px 11px; border-radius:20px; font-size:11px; border:1px solid var(--border2); color:var(--muted); background:#fff; cursor:pointer; font-weight:500; font-family:var(--font-body); transition:all 0.15s; }
 .chip:hover { border-color:var(--teal); color:var(--teal-dark); }
 .chip.on { background:var(--coral); color:#fff; border-color:var(--coral-dark); }
-
-/* Platform chips — free only gets 1 */
-.platform-chip { padding:5px 13px; border-radius:20px; font-size:11px; border:1px solid var(--border2); color:var(--muted); background:#fff; cursor:pointer; font-weight:500; font-family:var(--font-body); transition:all 0.15s; display:flex; align-items:center; gap:5px; }
+.platform-chip { padding:5px 13px; border-radius:20px; font-size:11px; border:1px solid var(--border2); color:var(--muted); background:#fff; cursor:pointer; font-weight:500; font-family:var(--font-body); transition:all 0.15s; }
 .platform-chip:hover { border-color:var(--teal); color:var(--teal-dark); }
 .platform-chip.on { background:var(--teal); color:#fff; border-color:var(--teal-dark); }
-.platform-chip .pro-lock { font-size:9px; background:rgba(0,0,0,0.15); border-radius:10px; padding:1px 5px; }
-
-.gen-btn { width:100%; padding:13px; background:var(--teal); border:none; border-radius:var(--r); color:#fff; font-family:var(--font-head); font-size:14px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; margin-top:auto; transition:all 0.15s; border-bottom:3px solid var(--teal-deep); }
+.gen-btn { width:100%; padding:13px; background:var(--teal); border:none; border-radius:var(--r); color:#fff; font-family:var(--font-head); font-size:14px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; margin-top:auto; border-bottom:3px solid var(--teal-deep); transition:all 0.15s; }
 .gen-btn:hover { background:var(--teal-dark); transform:translateY(-1px); }
-.gen-btn:active { transform:translateY(0); }
 .gen-btn:disabled { opacity:0.45; cursor:not-allowed; transform:none; }
 
 /* ── Main ── */
-.main { padding:18px; display:flex; flex-direction:column; gap:14px; overflow-y:auto; }
+.main { padding:18px; display:flex; flex-direction:column; gap:14px; }
 .main-top { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
 .tab-row { display:flex; gap:6px; flex-wrap:wrap; }
 .view-tab { padding:6px 15px; border-radius:20px; font-size:12px; border:1px solid var(--border2); color:var(--muted); cursor:pointer; background:#fff; font-weight:500; font-family:var(--font-body); transition:all 0.15s; }
-.view-tab:hover { border-color:var(--teal); color:var(--teal-dark); }
 .view-tab.on { background:var(--teal); color:#fff; border-color:var(--teal-dark); }
 .results-note { font-size:10px; color:var(--muted); }
-
-/* State boxes */
 .state-box { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:4rem 2rem; border:1px dashed var(--border2); border-radius:var(--r); color:var(--muted); gap:1rem; min-height:280px; }
 .state-box h2 { font-size:15px; color:var(--text); font-weight:500; font-family:var(--font-head); }
 .state-box p { font-size:13px; line-height:1.65; max-width:320px; }
 .spinner { width:32px; height:32px; border:3px solid var(--teal-light); border-top-color:var(--teal); border-radius:50%; animation:spin 0.75s linear infinite; }
 @keyframes spin { to { transform:rotate(360deg); } }
 
-/* Post cards */
+/* ── Post cards ── */
 .cards-list { display:flex; flex-direction:column; gap:1.1rem; }
-.post-card { background:var(--surface); border:1px solid var(--border2); border-radius:var(--r); overflow:hidden; transition:box-shadow 0.2s; }
-.post-card:hover { box-shadow:0 2px 12px rgba(74,171,184,0.12); }
+.post-card { background:var(--surface); border:1px solid var(--border2); border-radius:var(--r); overflow:hidden; }
 .post-card.winner { border-color:var(--coral); border-width:2px; }
 .winner-ribbon { background:var(--coral); color:#fff; font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; text-align:center; padding:5px; }
 .card-head { display:flex; align-items:center; justify-content:space-between; padding:11px 14px; border-bottom:1px solid var(--border); }
@@ -116,9 +99,11 @@ textarea { resize:vertical; min-height:64px; }
 .vscore { display:flex; align-items:center; gap:7px; }
 .vscore-txt { font-size:10px; color:var(--muted); }
 .vbar-bg { width:65px; height:6px; background:var(--teal-light); border-radius:3px; overflow:hidden; }
-.vbar { height:100%; border-radius:3px; background:var(--teal); }
+.vbar { height:100%; border-radius:3px; }
 .vbar.hot { background:var(--coral); }
-.vnum { font-size:13px; font-weight:700; color:var(--coral); }
+.vbar.cool { background:var(--teal); }
+.vnum { font-size:13px; font-weight:700; }
+.vnum.hot { color:var(--coral); }
 .vnum.cool { color:var(--teal-dark); }
 .card-btns { display:flex; gap:5px; }
 .c-btn { padding:4px 10px; border-radius:5px; border:1px solid var(--border2); background:transparent; color:var(--muted); font-size:11px; cursor:pointer; font-family:var(--font-body); font-weight:500; transition:all 0.15s; }
@@ -130,18 +115,13 @@ textarea { resize:vertical; min-height:64px; }
 .card-foot { padding:10px 14px; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; background:var(--teal-pale); }
 .char-note { font-size:10px; color:var(--muted); }
 .foot-btns { display:flex; gap:6px; }
-.post-btn { padding:5px 12px; border-radius:6px; border:1px solid var(--teal-dark); background:var(--teal-dark); color:#fff; font-size:11px; cursor:pointer; font-family:var(--font-body); font-weight:600; transition:all 0.15s; }
-.post-btn:hover { background:var(--teal-deep); }
+.post-btn { padding:5px 12px; border-radius:6px; background:var(--teal-dark); color:#fff; border:none; font-size:11px; cursor:pointer; font-family:var(--font-body); font-weight:600; }
 
-/* Pro locked section */
+/* ── Pro section ── */
 .pro-section { background:var(--surface); border:1px solid var(--border2); border-radius:var(--r); overflow:hidden; }
 .pro-top { background:var(--teal-deep); padding:13px 16px; display:flex; align-items:center; justify-content:space-between; }
-.pro-top-left { display:flex; align-items:center; gap:9px; }
-.pro-top-left span { font-size:12px; font-weight:600; color:#fff; }
-.lock-dot { width:20px; height:20px; border-radius:6px; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; }
+.pro-top span { font-size:12px; font-weight:600; color:#fff; }
 .pro-price-tag { font-size:11px; color:rgba(255,255,255,0.7); }
-
-/* Image section */
 .img-area { margin:14px; background:var(--coral-pale); border-radius:var(--r); padding:14px; display:flex; flex-direction:column; gap:10px; border:1px solid rgba(242,107,78,0.2); }
 .img-area-lbl { font-size:9px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--coral-dark); }
 .prompt-box { background:#fff; border-radius:var(--rs); padding:10px 12px; font-size:12px; color:var(--muted); line-height:1.65; font-style:italic; border:1px solid rgba(242,107,78,0.2); }
@@ -150,74 +130,67 @@ textarea { resize:vertical; min-height:64px; }
 .img-placeholder p { font-size:11px; color:var(--muted); }
 .img-result { width:100%; border-radius:var(--rs); display:block; }
 .img-btns { display:flex; gap:7px; }
-.img-btn { padding:7px 14px; border-radius:var(--rs); border:1px solid var(--border2); background:#fff; color:var(--muted); font-size:11px; cursor:pointer; font-family:var(--font-body); font-weight:500; transition:all 0.15s; }
-.img-btn:hover { border-color:var(--teal); color:var(--teal-dark); }
+.img-btn { padding:7px 14px; border-radius:var(--rs); border:1px solid var(--border2); background:#fff; color:var(--muted); font-size:11px; cursor:pointer; font-family:var(--font-body); font-weight:500; }
 .img-btn.main { background:var(--coral); color:#fff; border-color:var(--coral-dark); }
-.img-btn.main:hover { background:var(--coral-dark); }
 .img-btn:disabled { opacity:0.4; cursor:not-allowed; }
-
-/* Pro feature grid */
 .pro-feats { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; padding:14px; }
+@media(max-width:600px){ .pro-feats{grid-template-columns:1fr 1fr;} }
 .pro-feat { background:var(--teal-pale); border-radius:var(--rs); padding:11px 12px; border:1px solid var(--border); }
 .feat-icon { width:28px; height:28px; border-radius:7px; display:flex; align-items:center; justify-content:center; margin-bottom:7px; }
 .feat-icon.t { background:var(--teal); }
 .feat-icon.c { background:var(--coral); }
 .feat-name { font-size:11px; font-weight:700; color:var(--text); margin-bottom:3px; }
 .feat-desc { font-size:10px; color:var(--muted); line-height:1.5; }
+.upgrade-strip { margin:0 14px 14px; background:var(--coral); border-radius:var(--rs); padding:12px; text-align:center; cursor:pointer; border:none; width:calc(100% - 28px); font-family:var(--font-body); }
+.upgrade-strip:hover { background:var(--coral-dark); }
+.upgrade-strip span { font-size:12px; font-weight:700; color:#fff; display:block; }
+.upgrade-strip small { font-size:10px; color:rgba(255,255,255,0.78); display:block; margin-top:3px; }
 
-/* Brand profile section */
-.brand-profile-section { background:var(--surface); border:1px solid var(--border2); border-radius:var(--r); overflow:hidden; }
+/* ── Brand profile ── */
+.bp-section { background:var(--surface); border:1px solid var(--border2); border-radius:var(--r); overflow:hidden; }
 .bp-head { background:var(--coral); padding:12px 16px; display:flex; align-items:center; justify-content:space-between; }
 .bp-head span { font-size:12px; font-weight:700; color:#fff; }
-.bp-body { padding:14px; display:flex; flex-direction:column; gap:10px; }
+.bp-body { padding:16px; display:flex; flex-direction:column; gap:10px; }
 .bp-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .bp-field { display:flex; flex-direction:column; gap:4px; }
 .bp-field label { font-size:11px; color:var(--muted); font-weight:500; }
-.bp-save-btn { padding:10px; background:var(--coral); color:#fff; border:none; border-radius:var(--rs); font-size:12px; font-weight:700; cursor:pointer; font-family:var(--font-body); transition:all 0.15s; }
+.bp-save-btn { padding:11px; background:var(--coral); color:#fff; border:none; border-radius:var(--rs); font-size:13px; font-weight:700; cursor:pointer; font-family:var(--font-body); }
 .bp-save-btn:hover { background:var(--coral-dark); }
 
-/* Recommendations */
+/* ── Recommendations ── */
 .rec-section { background:var(--surface); border:1px solid var(--border2); border-radius:var(--r); overflow:hidden; }
 .rec-head { background:var(--teal); padding:12px 16px; display:flex; align-items:center; justify-content:space-between; }
 .rec-head span { font-size:12px; font-weight:700; color:#fff; }
 .rec-refresh { padding:5px 12px; border-radius:20px; background:rgba(255,255,255,0.18); color:#fff; border:none; font-size:11px; cursor:pointer; font-family:var(--font-body); }
 .rec-cards { padding:12px; display:flex; flex-direction:column; gap:8px; }
 .rec-card { background:var(--teal-pale); border:1px solid var(--border2); border-radius:var(--rs); padding:12px 14px; display:flex; flex-direction:column; gap:5px; cursor:pointer; transition:all 0.15s; }
-.rec-card:hover { border-color:var(--teal); background:var(--teal-light); }
+.rec-card:hover { border-color:var(--teal); }
 .rec-topic { font-size:12px; font-weight:600; color:var(--text); }
 .rec-meta { display:flex; gap:8px; align-items:center; }
 .rec-platform { font-size:10px; padding:2px 8px; border-radius:20px; background:var(--teal); color:#fff; font-weight:600; }
 .rec-hook { font-size:10px; color:var(--muted); }
 .rec-reason { font-size:11px; color:var(--muted); line-height:1.5; }
-.rec-use-btn { font-size:11px; color:var(--teal-dark); font-weight:600; align-self:flex-start; background:none; border:none; cursor:pointer; font-family:var(--font-body); padding:0; }
+.rec-use-btn { font-size:11px; color:var(--teal-dark); font-weight:600; background:none; border:none; cursor:pointer; font-family:var(--font-body); padding:0; align-self:flex-start; }
 
-/* Upgrade wall */
-.upgrade-wall { background:var(--coral-pale); border:1px solid rgba(242,107,78,0.25); border-radius:var(--r); padding:2rem; text-align:center; display:flex; flex-direction:column; align-items:center; gap:1rem; }
+/* ── Upgrade wall ── */
+.upgrade-wall { background:var(--coral-pale); border:1px solid rgba(242,107,78,0.25); border-radius:var(--r); padding:2.5rem 2rem; text-align:center; display:flex; flex-direction:column; align-items:center; gap:1rem; }
 .upgrade-wall h2 { font-family:var(--font-head); font-size:20px; color:var(--text); }
-.upgrade-wall p { font-size:13px; color:var(--muted); max-width:360px; line-height:1.65; }
-.upgrade-wall-btn { padding:13px 32px; background:var(--coral); color:#fff; border:none; border-radius:var(--r); font-size:14px; font-weight:700; cursor:pointer; font-family:var(--font-body); transition:all 0.15s; }
-.upgrade-wall-btn:hover { background:var(--coral-dark); transform:translateY(-1px); }
-.upgrade-strip { margin:0 14px 14px; background:var(--coral); border-radius:var(--rs); padding:12px; text-align:center; cursor:pointer; border:none; width:calc(100% - 28px); font-family:var(--font-body); transition:background 0.15s; }
-.upgrade-strip:hover { background:var(--coral-dark); }
-.upgrade-strip span { font-size:12px; font-weight:700; color:#fff; display:block; }
-.upgrade-strip small { font-size:10px; color:rgba(255,255,255,0.78); display:block; margin-top:3px; }
+.upgrade-wall p { font-size:13px; color:var(--muted); max-width:380px; line-height:1.65; }
+.upgrade-wall-btn { padding:13px 32px; background:var(--coral); color:#fff; border:none; border-radius:var(--r); font-size:14px; font-weight:700; cursor:pointer; font-family:var(--font-body); }
+.upgrade-wall-btn:hover { background:var(--coral-dark); }
 
-/* Error */
+/* ── Misc ── */
 .err-box { background:var(--coral-pale); border:1px solid rgba(242,107,78,0.3); border-radius:var(--rs); padding:11px 14px; font-size:12px; color:var(--coral-dark); }
-
-/* Footer */
+.success-msg { font-size:12px; color:var(--teal-dark); padding:8px 0; }
 .app-footer { background:var(--teal-deep); padding:12px 22px; display:flex; align-items:center; justify-content:space-between; }
 .footer-txt { font-size:10px; color:rgba(255,255,255,0.55); }
 .footer-txt strong { color:#fff; }
 .footer-link { font-size:10px; color:rgba(255,255,255,0.35); text-decoration:none; }
-
-/* Scrollbar */
-::-webkit-scrollbar { width:4px; } ::-webkit-scrollbar-track { background:transparent; } ::-webkit-scrollbar-thumb { background:var(--border2); border-radius:2px; }
+::-webkit-scrollbar { width:4px; } ::-webkit-scrollbar-thumb { background:var(--border2); border-radius:2px; }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="topnav">
   <div class="logo">
     <div class="logo-icon">
@@ -232,18 +205,15 @@ textarea { resize:vertical; min-height:64px; }
   </div>
   <div class="nav-links">
     <button class="nav-btn on" onclick="showView('create')">Create</button>
-    <button class="nav-btn" onclick="showView('history')">History</button>
     <button class="nav-btn" onclick="showView('recommend')">Recommendations</button>
     <button class="nav-btn" onclick="showView('brand')">Brand Profile</button>
-    <button class="nav-btn" onclick="showView('settings')">Settings</button>
   </div>
-  <div class="nav-right">
-    <span class="usage-pill" id="usagePill">Free · 2 of 2 generations left</span>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <span class="usage-pill" id="usagePill">Free · 2 of 2 left this week</span>
     <button class="upgrade-nav-btn" onclick="showUpgradeModal()">Upgrade to Pro</button>
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
     <div class="hero-left">
@@ -258,70 +228,46 @@ textarea { resize:vertical; min-height:64px; }
   </div>
 </div>
 
-<!-- MAIN SHELL -->
 <div class="shell">
-
-  <!-- SIDEBAR -->
   <aside class="sidebar">
-
-    <!-- Platform — free = 1 only -->
-    <div>
-      <div class="sec-hd">Platform <span id="platformNote" style="font-size:9px;color:var(--coral);text-transform:none;letter-spacing:0;font-weight:500;margin-left:4px">Free: select 1</span></div>
-      <div class="chip-row" id="platformChips">
-        <button class="platform-chip on" data-p="Facebook">Facebook</button>
-        <button class="platform-chip" data-p="Instagram">Instagram</button>
-        <button class="platform-chip" data-p="LinkedIn">LinkedIn</button>
-        <button class="platform-chip" data-p="Twitter / X">Twitter / X</button>
-      </div>
+    <div class="sec-hd">Platform <span id="platformNote" style="font-size:9px;color:var(--coral);text-transform:none;letter-spacing:0;font-weight:500;margin-left:4px">Free: select 1</span></div>
+    <div class="chip-row" id="platformChips">
+      <button class="platform-chip on" data-p="Facebook">Facebook</button>
+      <button class="platform-chip" data-p="Instagram">Instagram</button>
+      <button class="platform-chip" data-p="LinkedIn">LinkedIn</button>
+      <button class="platform-chip" data-p="Twitter / X">Twitter / X</button>
     </div>
 
     <div class="divline"></div>
-
-    <!-- Brief -->
     <div class="sec-hd">Content brief</div>
-    <div class="field">
-      <label>What are you promoting?</label>
+    <div class="field"><label>What are you promoting?</label>
       <textarea id="topic" placeholder="e.g. My faith-based affirmation guide 'Affirmed in Faith' — helps people silence doubt and walk boldly in God's purpose. Digital download, $27." rows="3"></textarea>
     </div>
     <div class="two-col">
       <div class="field"><label>Age range</label>
-        <select id="ageRange">
-          <option>All ages</option><option>18–24</option><option selected>25–44</option>
-          <option>35–54</option><option>45–64</option><option>55+</option>
-        </select>
+        <select id="ageRange"><option>All ages</option><option>18–24</option><option selected>25–44</option><option>35–54</option><option>45–64</option><option>55+</option></select>
       </div>
       <div class="field"><label>Gender</label>
-        <select id="gender">
-          <option>All</option><option selected>Women</option><option>Men</option>
-        </select>
+        <select id="gender"><option>All</option><option selected>Women</option><option>Men</option></select>
       </div>
     </div>
-    <div class="field"><label>Interests / community</label>
-      <input type="text" id="interests" placeholder="e.g. Faith, personal growth, devotionals" />
-    </div>
-    <div class="field"><label>Location</label>
-      <input type="text" id="location" placeholder="e.g. United States" />
-    </div>
+    <div class="field"><label>Interests</label><input type="text" id="interests" placeholder="e.g. Faith, personal growth" /></div>
+    <div class="field"><label>Location</label><input type="text" id="location" placeholder="e.g. United States" /></div>
 
     <div class="divline"></div>
     <div class="sec-hd">Content settings</div>
-
     <div class="field"><label>Industry</label>
       <select id="industry">
-        <option>General / Other</option><option>E-commerce / Retail</option>
-        <option>Food & Beverage</option><option>Tech / SaaS</option>
-        <option>Health & Wellness</option><option>Real Estate</option>
-        <option>Fashion / Lifestyle</option><option>Fitness / Sports</option>
-        <option>Finance / Investing</option><option selected>Education / Coaching</option>
-        <option>Marketing / Agency</option>
+        <option>General / Other</option><option>E-commerce / Retail</option><option>Food & Beverage</option>
+        <option>Tech / SaaS</option><option>Health & Wellness</option><option>Real Estate</option>
+        <option>Fashion / Lifestyle</option><option>Fitness / Sports</option><option>Finance / Investing</option>
+        <option selected>Education / Coaching</option><option>Marketing / Agency</option>
       </select>
     </div>
     <div class="field"><label>Goal</label>
       <select id="goal">
-        <option>Brand awareness</option><option selected>Drive sales</option>
-        <option>Drive engagement</option><option>Product launch</option>
-        <option>Educate audience</option><option>Build community</option>
-        <option>Drive website traffic</option>
+        <option>Brand awareness</option><option selected>Drive sales</option><option>Drive engagement</option>
+        <option>Product launch</option><option>Educate audience</option><option>Build community</option><option>Drive website traffic</option>
       </select>
     </div>
     <div class="field"><label>Tone</label>
@@ -364,52 +310,37 @@ textarea { resize:vertical; min-height:64px; }
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
       Generate viral posts
     </button>
-
   </aside>
 
-  <!-- MAIN CONTENT -->
-  <main class="main" id="mainArea">
-
+  <main class="main">
     <!-- CREATE VIEW -->
     <div id="createView">
       <div id="errBox" class="err-box" style="display:none;"></div>
-
       <div class="state-box" id="emptyState">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--teal-light)" stroke-width="1.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
         <h2>Ready to create</h2>
-        <p>Add your Claude API key, describe your topic, choose your settings and hit Generate.</p>
+        <p>Describe your topic, choose your settings and hit Generate Viral Posts.</p>
         <p style="font-size:11px;color:var(--muted);">Free plan · 2 generations per week · 1 platform · 3 variations each</p>
       </div>
-
       <div class="state-box" id="loadState" style="display:none;">
         <div class="spinner"></div>
         <h2>Crafting your viral posts…</h2>
         <p>Writing platform-optimized content tailored to your audience.</p>
       </div>
-
       <div id="resultsArea" style="display:none;">
         <div class="main-top">
           <div class="tab-row" id="platformTabs"></div>
-          <span class="results-note" id="resultsNote">3 variations · ranked by viral score</span>
+          <span class="results-note" id="resultsNote"></span>
         </div>
         <div class="cards-list" id="cardsContainer"></div>
-
-        <!-- Pro section — image gen -->
         <div class="pro-section" style="margin-top:14px;">
           <div class="pro-top">
-            <div class="pro-top-left">
-              <div class="lock-dot">
-                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              </div>
-              <span>Pro features — unlock the full Brandlift Social suite</span>
-            </div>
+            <span>Pro features — unlock the full Brandlift Social suite</span>
             <span class="pro-price-tag">$19/mo · cancel anytime</span>
           </div>
           <div class="img-area">
             <div class="img-area-lbl">AI image generation</div>
-            <div class="prompt-box" id="imgPromptBox">
-              <strong>Recommended prompt:</strong> Generate your posts first to see your custom image prompt.
-            </div>
+            <div class="prompt-box" id="imgPromptBox"><strong>Recommended prompt:</strong> Generate your posts first to see your custom image prompt.</div>
             <div id="imgResultArea">
               <div class="img-placeholder">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
@@ -425,17 +356,17 @@ textarea { resize:vertical; min-height:64px; }
             <div class="pro-feat">
               <div class="feat-icon c"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
               <div class="feat-name">Schedule posts</div>
-              <div class="feat-desc">Auto-post to Facebook at chosen date and time</div>
+              <div class="feat-desc">Auto-post to Facebook at your chosen date and time</div>
             </div>
             <div class="pro-feat">
               <div class="feat-icon t"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
               <div class="feat-name">All 4 platforms</div>
-              <div class="feat-desc">Generate for Facebook, Instagram, LinkedIn and Twitter/X simultaneously</div>
+              <div class="feat-desc">Generate for all platforms at once, unlimited</div>
             </div>
             <div class="pro-feat">
               <div class="feat-icon c"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
               <div class="feat-name">Brand kit</div>
-              <div class="feat-desc">Save your voice, audience and tone — remembered always</div>
+              <div class="feat-desc">Save your voice and audience — remembered always</div>
             </div>
             <div class="pro-feat">
               <div class="feat-icon t"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
@@ -445,19 +376,9 @@ textarea { resize:vertical; min-height:64px; }
           </div>
           <button class="upgrade-strip" onclick="showUpgradeModal()">
             <span>Upgrade to Brandlift Social Pro — $19/mo</span>
-            <small>Cancel anytime · Unlock all platforms, images, scheduling + brand recommendations</small>
+            <small>Cancel anytime · All platforms · Images · Scheduling · Brand recommendations</small>
           </button>
         </div>
-      </div>
-    </div>
-
-    <!-- HISTORY VIEW -->
-    <div id="historyView" style="display:none;">
-      <div class="state-box">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--teal-light)" stroke-width="1.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        <h2>Post history</h2>
-        <p>Your saved posts appear here. Upgrade to Pro to save and revisit all your generated content.</p>
-        <button class="upgrade-wall-btn" onclick="showUpgradeModal()">Upgrade to Pro — $19/mo</button>
       </div>
     </div>
 
@@ -467,75 +388,54 @@ textarea { resize:vertical; min-height:64px; }
         <div class="state-box">
           <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--teal-light)" stroke-width="1.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <h2>Smart post recommendations</h2>
-          <p>Complete your Brand Profile and upgrade to Pro — we'll suggest 5 tailored post ideas for your brand every week, automatically.</p>
-          <button class="upgrade-wall-btn" onclick="showUpgradeModal()">Upgrade to Pro — $19/mo</button>
+          <p>Complete your Brand Profile first, then we'll suggest 5 tailored post ideas for your brand every week.</p>
+          <button class="upgrade-wall-btn" onclick="showView('brand')">Set up Brand Profile →</button>
         </div>
       </div>
     </div>
 
     <!-- BRAND PROFILE VIEW -->
     <div id="brandView" style="display:none;">
-      <div class="brand-profile-section">
+      <div class="bp-section">
         <div class="bp-head">
-          <span>Brand profile — Pro feature</span>
-          <span style="font-size:10px;color:rgba(255,255,255,0.75);">Personalizes your recommendations</span>
+          <span>Brand profile</span>
+          <span style="font-size:10px;color:rgba(255,255,255,0.75);">Powers your weekly recommendations</span>
         </div>
         <div class="bp-body">
           <div class="bp-grid">
             <div class="bp-field"><label>Business name</label><input type="text" id="bp-name" placeholder="e.g. Affirmed in Faith" /></div>
             <div class="bp-field"><label>Industry</label><input type="text" id="bp-industry" placeholder="e.g. Faith-based coaching" /></div>
             <div class="bp-field"><label>Target audience</label><input type="text" id="bp-audience" placeholder="e.g. Christian women 25–44" /></div>
-            <div class="bp-field"><label>Goals</label><input type="text" id="bp-goals" placeholder="e.g. Sell my affirmation guide, grow community" /></div>
+            <div class="bp-field"><label>Goals</label><input type="text" id="bp-goals" placeholder="e.g. Sell guide, grow community" /></div>
           </div>
-          <div class="bp-field"><label>Brand voice</label><input type="text" id="bp-voice" placeholder="e.g. Warm, faith-rooted, inspirational. Always ends with a question." /></div>
-          <div class="bp-field"><label>Content pillars</label><input type="text" id="bp-pillars" placeholder="e.g. Faith, affirmations, personal growth, scripture, daily devotionals" /></div>
-          <button class="bp-save-btn" onclick="saveBrandProfile()">Save brand profile + get recommendations</button>
-          <div id="bp-msg" style="font-size:12px;color:var(--teal-dark);display:none;"></div>
+          <div class="bp-field"><label>Brand voice</label><input type="text" id="bp-voice" placeholder="e.g. Warm, faith-rooted, always ends with a question." /></div>
+          <div class="bp-field"><label>Content pillars</label><input type="text" id="bp-pillars" placeholder="e.g. Faith, affirmations, personal growth, scripture" /></div>
+          <button class="bp-save-btn" onclick="saveBrandProfile()">Save profile + get recommendations</button>
+          <div id="bp-msg" class="success-msg" style="display:none;"></div>
         </div>
       </div>
     </div>
-
-    <!-- SETTINGS VIEW -->
-    <div id="settingsView" style="display:none;">
-      <div class="brand-profile-section">
-        <div class="bp-head" style="background:var(--teal-dark);">
-          <span>Settings</span>
-        </div>
-        <div class="bp-body">
-          <div class="bp-field"><label>Your name</label><input type="text" id="settings-name" placeholder="e.g. Tiffany" /></div>
-          <div class="bp-field"><label>Business email</label><input type="text" id="settings-email" placeholder="e.g. hello@brandliftcreative.com" /></div>
-          <button class="bp-save-btn" style="background:var(--teal-dark);" onclick="saveSettings()">Save settings</button>
-          <div id="settings-msg" style="font-size:12px;color:var(--teal-dark);display:none;"></div>
-        </div>
-      </div>
-    </div>
-
   </main>
 </div>
 
-<!-- FOOTER -->
 <footer class="app-footer">
   <span class="footer-txt">Brandlift Social is a product of <strong>Brandlift Creative</strong> · Founded by Tiffany</span>
   <a href="https://smartbrandlift.com" target="_blank" class="footer-link">smartbrandlift.com</a>
 </footer>
 
 <script>
+const API = 'https://brandlift-social.onrender.com';
 const LIMITS = {
-  Facebook:   { max:63206, color:'#1877f2' },
-  Instagram:  { max:2200,  color:'#e1306c' },
-  LinkedIn:   { max:3000,  color:'#0077b5' },
-  'Twitter / X': { max:280, color:'#000000' }
+  'Facebook':    { max:63206, color:'#1877f2' },
+  'Instagram':   { max:2200,  color:'#e1306c' },
+  'LinkedIn':    { max:3000,  color:'#0077b5' },
+  'Twitter / X': { max:280,   color:'#000000' }
 };
 
-// ── State ──
 let state = {
   tone: 'Inspirational', cta: 'Buy now', hook: 'Inspirational story',
-  platform: 'Facebook',
-  generationsLeft: 2, weekReset: null,
-  isPro: false,
-  posts: [], imagePrompt: '',
-  brandProfile: null,
-  history: []
+  platform: 'Facebook', generationsLeft: 2, weekReset: null,
+  isPro: false, posts: [], imagePrompt: '', brandProfile: null
 };
 
 // Load saved state
@@ -547,49 +447,37 @@ try {
   if (state.brandProfile) loadBrandProfileUI();
 } catch(e) {}
 
-function saveState() {
-  localStorage.setItem('bl_state', JSON.stringify(state));
-}
+function saveState() { localStorage.setItem('bl_state', JSON.stringify(state)); }
 
 function checkWeekReset() {
   const now = Date.now();
-  if (!state.weekReset || now - state.weekReset > 7 * 24 * 60 * 60 * 1000) {
+  if (!state.weekReset || now - state.weekReset > 7*24*60*60*1000) {
     state.generationsLeft = 2;
     state.weekReset = now;
+    saveState();
   }
 }
 
 function updateUsagePill() {
   const pill = document.getElementById('usagePill');
-  if (state.isPro) {
-    pill.textContent = 'Pro plan · Unlimited';
-    pill.classList.remove('low');
-  } else {
-    pill.textContent = `Free · ${state.generationsLeft} of 2 generations left this week`;
-    pill.classList.toggle('low', state.generationsLeft === 0);
-  }
+  if (state.isPro) { pill.textContent = 'Pro · Unlimited'; pill.classList.remove('low'); }
+  else { pill.textContent = `Free · ${state.generationsLeft} of 2 left this week`; pill.classList.toggle('low', state.generationsLeft === 0); }
 }
 
-// ── View switching ──
 function showView(v) {
-  ['create','history','recommend','brand','settings'].forEach(n => {
-    document.getElementById(n+'View').style.display = n === v ? 'block' : 'none';
+  ['create','recommend','brand'].forEach(n => {
+    document.getElementById(n+'View').style.display = n===v ? 'block' : 'none';
   });
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('on'));
-  const map = {create:0,history:1,recommend:2,brand:3,settings:4};
+  const map = {create:0,recommend:1,brand:2};
   document.querySelectorAll('.nav-btn')[map[v]]?.classList.add('on');
 }
 
-// ── Single-select chips (free = 1 platform) ──
 document.getElementById('platformChips').addEventListener('click', e => {
   const b = e.target.closest('.platform-chip'); if (!b) return;
-  if (!state.isPro) {
-    document.querySelectorAll('.platform-chip').forEach(x => x.classList.remove('on'));
-    b.classList.add('on');
-    state.platform = b.dataset.p;
-  } else {
-    b.classList.toggle('on');
-  }
+  document.querySelectorAll('.platform-chip').forEach(x => x.classList.remove('on'));
+  b.classList.add('on');
+  state.platform = b.dataset.p;
 });
 
 ['toneChips','ctaChips','hookChips'].forEach(id => {
@@ -597,94 +485,57 @@ document.getElementById('platformChips').addEventListener('click', e => {
     const c = e.target.closest('.chip'); if (!c) return;
     document.querySelectorAll(`#${id} .chip`).forEach(x => x.classList.remove('on'));
     c.classList.add('on');
-    if (id === 'toneChips') state.tone = c.dataset.v;
-    if (id === 'ctaChips') state.cta = c.dataset.v;
-    if (id === 'hookChips') state.hook = c.dataset.v;
+    if (id==='toneChips') state.tone = c.dataset.v;
+    if (id==='ctaChips') state.cta = c.dataset.v;
+    if (id==='hookChips') state.hook = c.dataset.v;
   });
 });
 
-// ── Generate ──
 async function generate() {
   const topic = document.getElementById('topic').value.trim();
   if (!topic) { showErr('Please describe your topic or product.'); return; }
-
-  if (!state.isPro && state.generationsLeft <= 0) {
-    showUpgradeWall(); return;
-  }
-
-  const platform = state.isPro
-    ? [...document.querySelectorAll('.platform-chip.on')].map(b => b.dataset.p).join(', ')
-    : state.platform;
-  if (!platform) { showErr('Please select a platform.'); return; }
+  if (!state.isPro && state.generationsLeft <= 0) { showUpgradeWall(); return; }
 
   hideErr(); setLoading(true);
 
-  const age = document.getElementById('ageRange').value;
-  const gender = document.getElementById('gender').value;
-  const interests = document.getElementById('interests').value;
-  const location = document.getElementById('location').value;
-  const industry = document.getElementById('industry').value;
-  const goal = document.getElementById('goal').value;
-  const voice = document.getElementById('brandVoice').value;
-
-  const platformList = state.isPro
-    ? [...document.querySelectorAll('.platform-chip.on')].map(b => {
-        const info = LIMITS[b.dataset.p] || { max: 2200 };
-        return `- ${b.dataset.p} (max ${info.max} chars)`;
-      }).join('\n')
-    : `- ${platform} (max ${LIMITS[platform]?.max || 2200} chars)`;
-
+  const platform = state.platform;
+  const info = LIMITS[platform] || { max: 2200 };
   const prompt = `You are a world-class social media copywriter for Brandlift Creative.
-
 Create 3 viral-worthy post variations for this brief:
-
 Topic: ${topic}
-Platform(s): ${platformList}
-Target audience: ${age} ${gender}, interested in ${interests || 'general topics'}, located in ${location || 'United States'}
-Industry: ${industry}
-Goal: ${goal}
+Platform: ${platform} (max ${info.max} chars)
+Target audience: ${document.getElementById('ageRange').value} ${document.getElementById('gender').value}, interested in ${document.getElementById('interests').value || 'general topics'}, in ${document.getElementById('location').value || 'United States'}
+Industry: ${document.getElementById('industry').value}
+Goal: ${document.getElementById('goal').value}
 Tone: ${state.tone}
 Call to action: ${state.cta}
-Emotional hook style: ${state.hook}
-${voice ? `Brand voice: ${voice}` : ''}
-
-For EACH variation:
-- Write copy that is native to the platform's culture and style
-- Stay strictly within the character limit
-- Use the specified emotional hook in the opening line
-- Build to the CTA naturally
-- Include 5–8 relevant hashtags (2–3 for Twitter/X, minimal for LinkedIn)
-- Make it genuinely viral-worthy — emotionally resonant, shareable, specific
-
-Also generate one "image_prompt" field: a vivid, detailed AI image generation prompt (suitable for DALL-E 3) that visually complements Variation 1.
-
-Respond ONLY with raw JSON, no markdown fences:
-{"posts":[{"variation":1,"platform":"Facebook","content":"...","hashtags":["..."],"viral_score":91},{"variation":2,"platform":"Facebook","content":"...","hashtags":["..."],"viral_score":74},{"variation":3,"platform":"Facebook","content":"...","hashtags":["..."],"viral_score":61}],"image_prompt":"..."}`;
+Emotional hook: ${state.hook}
+${document.getElementById('brandVoice').value ? `Brand voice: ${document.getElementById('brandVoice').value}` : ''}
+For each variation: stay within char limit, use the emotional hook in opening, build naturally to CTA, include 5-8 hashtags (2-3 for Twitter, minimal for LinkedIn), make it genuinely viral-worthy.
+Also generate one "image_prompt": a vivid DALL-E 3 prompt that complements Variation 1 visually.
+Respond ONLY with raw JSON no markdown:
+{"posts":[{"variation":1,"platform":"${platform}","content":"...","hashtags":["..."],"viral_score":91},{"variation":2,"platform":"${platform}","content":"...","hashtags":["..."],"viral_score":74},{"variation":3,"platform":"${platform}","content":"...","hashtags":["..."],"viral_score":61}],"image_prompt":"..."}`;
 
   try {
-    const res = await fetch('https://brandlift-social.onrender.com/api/generate', {
-      method:'POST', headers:{'Content-Type':'application/json'},
+    const res = await fetch(`${API}/api/generate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ prompt })
     });
+    if (!res.ok) { const e = await res.json(); throw new Error(e.error || 'Server error'); }
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Generation failed');
     const raw = data.content?.[0]?.text || '';
     const s = raw.indexOf('{'), e = raw.lastIndexOf('}');
-    if (s === -1) throw new Error('Unexpected response format');
+    if (s === -1) throw new Error('Could not parse response');
     const parsed = JSON.parse(raw.slice(s, e+1));
     if (!parsed.posts?.length) throw new Error('No posts returned');
-
-    if (!state.isPro) {
-      state.generationsLeft = Math.max(0, state.generationsLeft - 1);
-      updateUsagePill();
-    }
+    if (!state.isPro) { state.generationsLeft = Math.max(0, state.generationsLeft - 1); }
     state.posts = parsed.posts;
     state.imagePrompt = parsed.image_prompt || '';
-    state.history.unshift({ date: new Date().toISOString(), topic, posts: parsed.posts });
-    saveState();
+    saveState(); updateUsagePill();
     renderPosts(parsed.posts, parsed.image_prompt);
   } catch(err) {
-    showErr('Error: ' + err.message);
+    showErr('Error: ' + err.message + '. Please try again.');
   } finally {
     setLoading(false);
   }
@@ -695,30 +546,15 @@ function renderPosts(posts, imagePrompt) {
   const tabsEl = document.getElementById('platformTabs');
   container.innerHTML = ''; tabsEl.innerHTML = '';
 
-  const platforms = [...new Set(posts.map(p => p.platform))];
-  platforms.forEach((plt, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'view-tab' + (i === 0 ? ' on' : '');
-    btn.textContent = plt;
-    btn.onclick = () => {
-      document.querySelectorAll('.view-tab').forEach(b => b.classList.remove('on'));
-      btn.classList.add('on');
-      filterPosts(plt);
-    };
-    tabsEl.appendChild(btn);
-  });
-
   posts.forEach((post, i) => {
-    const info = LIMITS[post.platform] || { max: 2200, color: '#888' };
+    const info = LIMITS[post.platform] || { max:2200, color:'#888' };
     const len = post.content.length;
     const over = len > info.max;
-    const score = post.viral_score || (91 - i * 17);
+    const score = post.viral_score || (91 - i*17);
     const isWinner = i === 0;
     const tags = post.hashtags || [];
-
     const card = document.createElement('div');
     card.className = 'post-card' + (isWinner ? ' winner' : '');
-    card.dataset.platform = post.platform;
     card.innerHTML = `
       ${isWinner ? '<div class="winner-ribbon">✦ Top pick — highest viral score</div>' : ''}
       <div class="card-head">
@@ -730,21 +566,17 @@ function renderPosts(posts, imagePrompt) {
         <div style="display:flex;align-items:center;gap:10px;">
           <div class="vscore">
             <span class="vscore-txt">Viral score</span>
-            <div class="vbar-bg"><div class="vbar ${isWinner?'hot':''}" style="width:${score}%"></div></div>
-            <span class="vnum ${isWinner?'':'cool'}">${score}</span>
+            <div class="vbar-bg"><div class="vbar ${isWinner?'hot':'cool'}" style="width:${score}%"></div></div>
+            <span class="vnum ${isWinner?'hot':'cool'}">${score}</span>
           </div>
-          <div class="card-btns">
-            <button class="c-btn" onclick="copyPost(this,${i})">Copy</button>
-          </div>
+          <button class="c-btn" onclick="copyPost(this,${i})">Copy</button>
         </div>
       </div>
       <div class="card-body">${esc(post.content)}</div>
       ${tags.length ? `<div class="tag-row">${tags.map(h=>`<span class="htag">#${h.replace(/^#/,'')}</span>`).join('')}</div>` : ''}
       <div class="card-foot">
         <span class="char-note">${len.toLocaleString()} / ${info.max.toLocaleString()} chars${over?' · over limit':' · optimal'}</span>
-        <div class="foot-btns">
-          <button class="post-btn">Post to ${post.platform}</button>
-        </div>
+        <div class="foot-btns"><button class="post-btn">Post to ${post.platform}</button></div>
       </div>`;
     container.appendChild(card);
   });
@@ -756,13 +588,7 @@ function renderPosts(posts, imagePrompt) {
   document.getElementById('emptyState').style.display = 'none';
   document.getElementById('loadState').style.display = 'none';
   document.getElementById('resultsArea').style.display = 'block';
-  document.getElementById('resultsNote').textContent = `${posts.length} variation${posts.length!==1?'s':''} · ranked by viral score`;
-}
-
-function filterPosts(platform) {
-  document.querySelectorAll('.post-card').forEach(c => {
-    c.style.display = c.dataset.platform === platform ? 'block' : 'none';
-  });
+  document.getElementById('resultsNote').textContent = `${posts.length} variations · ranked by viral score`;
 }
 
 function copyPost(btn, i) {
@@ -773,39 +599,30 @@ function copyPost(btn, i) {
   setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('done');},2000);
 }
 
-function copyPrompt() {
-  navigator.clipboard.writeText(state.imagePrompt);
-}
+function copyPrompt() { navigator.clipboard.writeText(state.imagePrompt); }
 
-// ── Image generation ──
 async function generateImage() {
-  if (!state.imagePrompt) { showErr('Generate posts first to get an image prompt.'); return; }
-
+  if (!state.imagePrompt) { showErr('Generate posts first to get your image prompt.'); return; }
   const btn = document.getElementById('genImgBtn');
   btn.disabled = true; btn.textContent = 'Generating…';
-
   try {
-    const res = await fetch('https://brandlift-social.onrender.com/api/image', {
+    const res = await fetch(`${API}/api/image`, {
       method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify({ prompt: state.imagePrompt })
     });
+    if (!res.ok) { const e = await res.json(); throw new Error(e.error); }
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Image generation failed');
     const url = data.data?.[0]?.url;
     if (!url) throw new Error('No image returned');
     document.getElementById('imgResultArea').innerHTML = `
       <img src="${url}" class="img-result" alt="Generated image" />
       <div class="img-btns" style="margin-top:8px;">
-        <a href="${url}" target="_blank" class="img-btn main" style="text-decoration:none;display:inline-block;">Download image</a>
+        <a href="${url}" target="_blank" class="img-btn main" style="text-decoration:none;">Download image</a>
       </div>`;
-  } catch(e) {
-    showErr('Image error: ' + e.message);
-  } finally {
-    btn.disabled = false; btn.textContent = 'Generate image';
-  }
+  } catch(e) { showErr('Image error: ' + e.message); }
+  finally { btn.disabled = false; btn.textContent = 'Generate image'; }
 }
 
-// ── Brand profile ──
 function saveBrandProfile() {
   state.brandProfile = {
     businessName: document.getElementById('bp-name').value,
@@ -817,14 +634,13 @@ function saveBrandProfile() {
   };
   saveState();
   const msg = document.getElementById('bp-msg');
-  msg.textContent = '✓ Brand profile saved! View your recommendations to get this week\'s post ideas.';
+  msg.textContent = '✓ Brand profile saved! Loading your recommendations…';
   msg.style.display = 'block';
-  setTimeout(() => { showView('recommend'); loadRecommendations(); }, 1500);
+  setTimeout(() => { showView('recommend'); loadRecommendations(); }, 1200);
 }
 
 function loadBrandProfileUI() {
-  if (!state.brandProfile) return;
-  const bp = state.brandProfile;
+  const bp = state.brandProfile; if (!bp) return;
   document.getElementById('bp-name').value = bp.businessName || '';
   document.getElementById('bp-industry').value = bp.industry || '';
   document.getElementById('bp-audience').value = bp.audience || '';
@@ -834,19 +650,18 @@ function loadBrandProfileUI() {
 }
 
 async function loadRecommendations() {
-  if (!state.brandProfile) return;
-  const claudeKey = document.getElementById('claudeKey').value.trim();
-  if (!claudeKey) { showErr('Add your Claude API key to get recommendations.'); return; }
-
-  document.getElementById('recContent').innerHTML = '<div class="state-box"><div class="spinner"></div><h2>Generating your recommendations…</h2><p>Analyzing your brand profile to suggest this week\'s best post ideas.</p></div>';
-
+  if (!state.brandProfile?.businessName) {
+    document.getElementById('recContent').innerHTML = `<div class="state-box"><h2>No brand profile yet</h2><p>Complete your Brand Profile first to get personalized post recommendations.</p><button class="upgrade-wall-btn" onclick="showView('brand')">Set up Brand Profile →</button></div>`;
+    return;
+  }
+  document.getElementById('recContent').innerHTML = '<div class="state-box"><div class="spinner"></div><h2>Generating recommendations…</h2><p>Analyzing your brand profile to suggest this week\'s best post ideas.</p></div>';
   try {
-    const res = await fetch('https://brandlift-social.onrender.com/api/recommend', {
+    const res = await fetch(`${API}/api/recommend`, {
       method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify({ brandProfile: state.brandProfile })
     });
+    if (!res.ok) { const e = await res.json(); throw new Error(e.error); }
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error);
     const raw = data.content?.[0]?.text || '';
     const s = raw.indexOf('{'), e = raw.lastIndexOf('}');
     const parsed = JSON.parse(raw.slice(s, e+1));
@@ -860,11 +675,11 @@ function renderRecommendations(recs) {
   document.getElementById('recContent').innerHTML = `
     <div class="rec-section">
       <div class="rec-head">
-        <span>✦ This week's post recommendations for ${esc(state.brandProfile?.businessName || 'your brand')}</span>
+        <span>✦ This week's post ideas for ${esc(state.brandProfile?.businessName || 'your brand')}</span>
         <button class="rec-refresh" onclick="loadRecommendations()">↻ Refresh</button>
       </div>
       <div class="rec-cards">
-        ${recs.map((r,i) => `
+        ${recs.map(r => `
           <div class="rec-card" onclick="useRecommendation('${esc(r.topic)}','${esc(r.platform)}')">
             <div class="rec-topic">${esc(r.topic)}</div>
             <div class="rec-meta">
@@ -880,74 +695,61 @@ function renderRecommendations(recs) {
 
 function useRecommendation(topic, platform) {
   document.getElementById('topic').value = topic;
-  document.querySelectorAll('.platform-chip').forEach(b => {
-    b.classList.toggle('on', b.dataset.p === platform);
-  });
+  document.querySelectorAll('.platform-chip').forEach(b => b.classList.toggle('on', b.dataset.p === platform));
   state.platform = platform;
   showView('create');
 }
 
-// ── Settings ──
-function saveSettings() {
-  const c = document.getElementById('settings-claude').value.trim();
-  const o = document.getElementById('settings-openai').value.trim();
-  if (c) { document.getElementById('claudeKey').value = c; }
-  if (o) { document.getElementById('openaiKey').value = o; }
-  saveState();
-  const msg = document.getElementById('settings-msg');
-  msg.textContent = '✓ Settings saved.'; msg.style.display = 'block';
-  setTimeout(() => msg.style.display = 'none', 2000);
-}
-
-// ── Upgrade modal ──
-function showUpgradeModal() {
-  const wall = document.getElementById('upgradeWall');
-  if (wall) { wall.style.display = 'flex'; return; }
-  const div = document.createElement('div');
-  div.id = 'upgradeWall';
-  div.style.cssText = 'position:fixed;inset:0;background:rgba(26,58,63,0.7);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px;';
-  div.innerHTML = `
-    <div style="background:#fff;border-radius:16px;padding:32px;max-width:460px;width:100%;text-align:center;position:relative;">
-      <button onclick="document.getElementById('upgradeWall').style.display='none'" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:18px;cursor:pointer;color:var(--muted);">✕</button>
-      <div style="width:48px;height:48px;background:var(--coral);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-      </div>
-      <h2 style="font-family:var(--font-head);font-size:22px;color:var(--text);margin-bottom:8px;">Upgrade to Brandlift Social Pro</h2>
-      <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px;">You've reached your free limit. Upgrade to unlock everything and supercharge your social media strategy.</p>
-      <div style="background:var(--teal-pale);border-radius:10px;padding:16px;margin-bottom:20px;text-align:left;display:flex;flex-direction:column;gap:8px;">
-        ${['All 4 platforms simultaneously','Unlimited generations — no weekly cap','AI image generation with prompt guide','Post scheduling — auto-post to Facebook','Brand profile + weekly post recommendations','Post history — save and reuse content'].map(f=>`<div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span style="width:18px;height:18px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>${f}</div>`).join('')}
-      </div>
-      <button onclick="alert('Stripe payment integration coming soon! Contact tiffany@brandliftcreative.com to upgrade.')" style="width:100%;padding:14px;background:var(--coral);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--font-body);margin-bottom:8px;">Upgrade to Pro — $19/mo</button>
-      <p style="font-size:11px;color:var(--muted);">Cancel anytime · Secure payment · No contracts</p>
-    </div>`;
-  document.body.appendChild(div);
-}
-
 function showUpgradeWall() {
   document.getElementById('emptyState').style.display = 'none';
-  document.getElementById('loadState').style.display = 'none';
-  const resultsArea = document.getElementById('resultsArea');
-  resultsArea.style.display = 'block';
+  document.getElementById('resultsArea').style.display = 'block';
   document.getElementById('cardsContainer').innerHTML = `
     <div class="upgrade-wall">
       <h2>You've used your 2 free generations this week 🎉</h2>
       <p>You've experienced the power of Brandlift Social. Upgrade to Pro for unlimited posts, all 4 platforms, AI image generation, scheduling, and your personal brand recommendation engine.</p>
       <button class="upgrade-wall-btn" onclick="showUpgradeModal()">Upgrade to Pro — $19/mo</button>
-      <p style="font-size:11px;color:var(--muted);">Or wait until your weekly limit resets</p>
+      <p style="font-size:11px;color:var(--muted);">Your free limit resets automatically next week.</p>
     </div>`;
 }
 
-// ── Helpers ──
+function showUpgradeModal() {
+  const existing = document.getElementById('upgradeModal');
+  if (existing) { existing.style.display = 'flex'; return; }
+  const div = document.createElement('div');
+  div.id = 'upgradeModal';
+  div.style.cssText = 'position:fixed;inset:0;background:rgba(26,58,63,0.75);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px;';
+  div.innerHTML = `
+    <div style="background:#fff;border-radius:16px;padding:32px;max-width:460px;width:100%;text-align:center;position:relative;">
+      <button onclick="document.getElementById('upgradeModal').style.display='none'" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);">✕</button>
+      <div style="width:48px;height:48px;background:var(--coral);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      </div>
+      <h2 style="font-family:var(--font-head);font-size:22px;color:var(--text);margin-bottom:8px;">Upgrade to Brandlift Social Pro</h2>
+      <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px;">Unlock everything and supercharge your social media strategy.</p>
+      <div style="background:var(--teal-pale);border-radius:10px;padding:16px;margin-bottom:20px;text-align:left;display:flex;flex-direction:column;gap:8px;">
+        ${['All 4 platforms simultaneously','Unlimited generations — no weekly cap','AI image generation with prompt guide','Post scheduling — auto-post to Facebook','Brand profile + weekly post recommendations','Post history — save and reuse content'].map(f=>`
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);">
+          <span style="width:18px;height:18px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>${f}</div>`).join('')}
+      </div>
+      <button onclick="alert('Contact tiffany@brandliftcreative.com to upgrade to Pro!')" style="width:100%;padding:14px;background:var(--coral);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--font-body);margin-bottom:8px;">Upgrade to Pro — $19/mo</button>
+      <p style="font-size:11px;color:var(--muted);">Cancel anytime · No contracts</p>
+    </div>`;
+  document.body.appendChild(div);
+}
+
 function setLoading(on) {
   const btn = document.getElementById('genBtn');
   btn.disabled = on;
   btn.innerHTML = on
     ? `<div style="width:15px;height:15px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite;flex-shrink:0;"></div> Generating…`
     : `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Generate viral posts`;
-  document.getElementById('emptyState').style.display = on ? 'none' : (document.getElementById('resultsArea').style.display === 'none' ? 'flex' : 'none');
+  const hasResults = document.getElementById('resultsArea').style.display !== 'none';
+  document.getElementById('emptyState').style.display = (!on && !hasResults) ? 'flex' : 'none';
   document.getElementById('loadState').style.display = on ? 'flex' : 'none';
 }
-function showErr(msg) { const b=document.getElementById('errBox'); b.textContent=msg; b.style.display='block'; }
+function showErr(m) { const b=document.getElementById('errBox'); b.textContent=m; b.style.display='block'; }
 function hideErr() { document.getElementById('errBox').style.display='none'; }
 function esc(t) { return String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 </script>
