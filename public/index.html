@@ -264,21 +264,6 @@ textarea { resize:vertical; min-height:64px; }
   <!-- SIDEBAR -->
   <aside class="sidebar">
 
-    <!-- API Key -->
-    <div>
-      <div class="sec-hd">API Key</div>
-      <div class="field">
-        <label>Claude API Key <span style="color:var(--coral);font-size:10px">required</span></label>
-        <input type="password" id="claudeKey" placeholder="sk-ant-api03-..." />
-      </div>
-      <div class="field" style="margin-top:8px;">
-        <label>OpenAI Key <span style="color:var(--muted);font-size:10px">Pro · image generation</span></label>
-        <input type="password" id="openaiKey" placeholder="sk-..." />
-      </div>
-    </div>
-
-    <div class="divline"></div>
-
     <!-- Platform — free = 1 only -->
     <div>
       <div class="sec-hd">Platform <span id="platformNote" style="font-size:9px;color:var(--coral);text-transform:none;letter-spacing:0;font-weight:500;margin-left:4px">Free: select 1</span></div>
@@ -517,8 +502,8 @@ textarea { resize:vertical; min-height:64px; }
           <span>Settings</span>
         </div>
         <div class="bp-body">
-          <div class="bp-field"><label>Claude API Key</label><input type="password" id="settings-claude" placeholder="sk-ant-api03-..." /></div>
-          <div class="bp-field"><label>OpenAI API Key (Pro — image generation)</label><input type="password" id="settings-openai" placeholder="sk-..." /></div>
+          <div class="bp-field"><label>Your name</label><input type="text" id="settings-name" placeholder="e.g. Tiffany" /></div>
+          <div class="bp-field"><label>Business email</label><input type="text" id="settings-email" placeholder="e.g. hello@brandliftcreative.com" /></div>
           <button class="bp-save-btn" style="background:var(--teal-dark);" onclick="saveSettings()">Save settings</button>
           <div id="settings-msg" style="font-size:12px;color:var(--teal-dark);display:none;"></div>
         </div>
@@ -544,7 +529,6 @@ const LIMITS = {
 
 // ── State ──
 let state = {
-  claudeKey: '', openaiKey: '',
   tone: 'Inspirational', cta: 'Buy now', hook: 'Inspirational story',
   platform: 'Facebook',
   generationsLeft: 2, weekReset: null,
@@ -558,16 +542,12 @@ let state = {
 try {
   const saved = JSON.parse(localStorage.getItem('bl_state') || '{}');
   Object.assign(state, saved);
-  if (state.claudeKey) document.getElementById('claudeKey').value = state.claudeKey;
-  if (state.openaiKey) document.getElementById('openaiKey').value = state.openaiKey;
   checkWeekReset();
   updateUsagePill();
   if (state.brandProfile) loadBrandProfileUI();
 } catch(e) {}
 
 function saveState() {
-  state.claudeKey = document.getElementById('claudeKey').value.trim();
-  state.openaiKey = document.getElementById('openaiKey').value.trim();
   localStorage.setItem('bl_state', JSON.stringify(state));
 }
 
@@ -625,8 +605,6 @@ document.getElementById('platformChips').addEventListener('click', e => {
 
 // ── Generate ──
 async function generate() {
-  const claudeKey = document.getElementById('claudeKey').value.trim();
-  if (!claudeKey) { showErr('Please enter your Claude API key in the sidebar.'); return; }
   const topic = document.getElementById('topic').value.trim();
   if (!topic) { showErr('Please describe your topic or product.'); return; }
 
@@ -684,9 +662,9 @@ Respond ONLY with raw JSON, no markdown fences:
 {"posts":[{"variation":1,"platform":"Facebook","content":"...","hashtags":["..."],"viral_score":91},{"variation":2,"platform":"Facebook","content":"...","hashtags":["..."],"viral_score":74},{"variation":3,"platform":"Facebook","content":"...","hashtags":["..."],"viral_score":61}],"image_prompt":"..."}`;
 
   try {
-    const res = await fetch('/api/generate', {
+    const res = await fetch('https://brandlift-social.onrender.com/api/generate', {
       method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ prompt, claudeKey })
+      body: JSON.stringify({ prompt })
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Generation failed');
@@ -801,17 +779,15 @@ function copyPrompt() {
 
 // ── Image generation ──
 async function generateImage() {
-  const openaiKey = document.getElementById('openaiKey').value.trim();
-  if (!openaiKey) { showErr('Add your OpenAI API key to generate images (Pro feature).'); return; }
   if (!state.imagePrompt) { showErr('Generate posts first to get an image prompt.'); return; }
 
   const btn = document.getElementById('genImgBtn');
   btn.disabled = true; btn.textContent = 'Generating…';
 
   try {
-    const res = await fetch('/api/image', {
+    const res = await fetch('https://brandlift-social.onrender.com/api/image', {
       method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ prompt: state.imagePrompt, openaiKey })
+      body: JSON.stringify({ prompt: state.imagePrompt })
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Image generation failed');
@@ -865,9 +841,9 @@ async function loadRecommendations() {
   document.getElementById('recContent').innerHTML = '<div class="state-box"><div class="spinner"></div><h2>Generating your recommendations…</h2><p>Analyzing your brand profile to suggest this week\'s best post ideas.</p></div>';
 
   try {
-    const res = await fetch('/api/recommend', {
+    const res = await fetch('https://brandlift-social.onrender.com/api/recommend', {
       method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ brandProfile: state.brandProfile, claudeKey })
+      body: JSON.stringify({ brandProfile: state.brandProfile })
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error);
